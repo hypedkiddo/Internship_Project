@@ -1,0 +1,26 @@
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Loader.css */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loader {
+    width: 64px; /* equivalent to w-16 in Tailwind */
+    height: 64px; /* equivalent to h-16 in Tailwind */
+    border-width: 4px; /* equivalent to border-4 */
+    border-top-color: #3b82f6; /* Tailwind's blue-500 */
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-radius: 50%; /* equivalent to rounded-full */
+    animation: spin 1s linear infinite;
+   
+  }
+  
