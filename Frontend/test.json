@@ -1,0 +1,34 @@
+{
+    "test": [
+      {
+        "id": "3d2e",
+        "place": "KLS GIT",
+        "ipAddress": "172.20.10.2",
+        "position": "1",
+        "CO": 0,
+        "Butane": 0,
+        "NH3": 0,
+        "Benzene": 0,
+        "CO2": 0,
+        "TVOC": 0,
+        "DATE": "25/10/2024",
+        "Time": "13:13:19",
+        "Address": "Akkithimmanahalli, Shanti Nagar, Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, 560027, India"
+      },
+      {
+        "id": "cf15",
+        "place": "KLS GIT",
+        "ipAddress": "172.20.10.2",
+        "position": "1",
+        "CO": 0,
+        "Butane": 0,
+        "NH3": 0,
+        "Benzene": 0,
+        "CO2": 0,
+        "TVOC": 0,
+        "DATE": "25/10/2024",
+        "Time": "13:13:19",
+        "Address": "Akkithimmanahalli, Shanti Nagar, Bengaluru, Bangalore North, Bengaluru Urban, Karnataka, 560027, India"
+      }
+    ]
+}
