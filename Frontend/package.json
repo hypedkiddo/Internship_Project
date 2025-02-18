@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "db": "json-server test.json",
+    "db": "json-server DB.json",
     "start": "concurrently \"npm run db\" \"npm run dev -- --host \""
   },
   "dependencies": {
