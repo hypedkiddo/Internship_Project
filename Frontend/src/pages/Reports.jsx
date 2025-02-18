@@ -3,7 +3,7 @@ import GasTable from "../components/GasTable";
 import GasBarChart from "../components/GasBarChart"
 import axios from "axios";
 import SensorChart from "../components/SensorChart";
-import ReportDownload from "../components/REportDownload";
+import ReportDownload from "../components/ReportDownload";
 
 const Reports = () => {
     const [data, setdata]=useState([{}]);
