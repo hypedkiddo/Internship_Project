@@ -5,7 +5,7 @@ import Header from './components/Hedder'
 import Footer from './components/Fotter'
 import Reports from './pages/Reports'
 import NotFound from './pages/NotFound'
-import ReportDownload from './components/REportDownload'
+import ReportDownload from './components/ReportDownload'
 
 const App = () => {
   
