@@ -11,7 +11,7 @@ const Reports = () => {
     const [Report ,setReport] =useState(false);
     const [selectedPlace ,setselectedPlace]=useState("");
   useEffect(()=>{
-    axios.get("http://localhost:5000/api/sensor-data")
+    axios.get("https://air-monitoring.onrender.com/api/sensor-data")
     .then((res)=>  {
        
 

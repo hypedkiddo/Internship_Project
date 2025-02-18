@@ -20,7 +20,7 @@ console.log(DATE,Time)
     }, 1000);
     if(timeLeft % 5 === 0){
    
-      axios.post("http://localhost:3000/SensorData",{...formData ,...sensorData , DATE,Time,Address})
+      axios.post("https://air-monitoring.onrender.com/api/sensor-data",{...formData ,...sensorData , DATE,Time,Address})
       .then((res)=> console.log(res))
       .catch((err)=>console.log(err))
     }
