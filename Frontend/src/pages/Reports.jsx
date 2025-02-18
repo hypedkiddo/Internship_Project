@@ -1,69 +1,88 @@
 import { useEffect, useState } from "react";
 import GasTable from "../components/GasTable";
-import GasBarChart from "../components/GasBarChart";
+import GasBarChart from "../components/GasBarChart"
 import axios from "axios";
 import SensorChart from "../components/SensorChart";
-import ReportDownload from "../components/ReportDownload";
+import ReportDownload from "../components/REportDownload";
 
 const Reports = () => {
-    const [data, setData] = useState([]);
-    const [graph, setGraph] = useState(false);
-    const [report, setReport] = useState(false);
+    const [data, setdata]=useState([{}]);
+    const [graph ,setgraph] =useState(false);
+    const [Report ,setReport] =useState(false);
+    const [selectedPlace ,setselectedPlace]=useState("");
+  useEffect(()=>{
+    axios.get("http://localhost:5000/api/sensor-data")
+    .then((res)=>  {
+       
+
+        const averageSensorDataByPlace = (data) => {
+            const groupedData = data.reduce((acc, item) => {
+              // Group by unique place
+              if (!acc[item.place]) {
+                acc[item.place] = { ...item, CO: 0, count: 0 };
+              }
+              // Sum CO and increase count for averaging
+              acc[item.place].CO += item.CO;
+              acc[item.place].Benzene += item.Benzene;
+              acc[item.place].Butane += item.Butane;
+              acc[item.place].CO2 += item.CO2;
+              acc[item.place].NH3 += item.NH3;
+              acc[item.place].TVOC += item.TVOC;
+              acc[item.place].count += 1;
 
 
-    useEffect(() => {
-        axios.get("http://localhost:5000/api/sensor-data")
-            .then((res) => {
-                console.log("API Response Length:", res.data.length); // Check total documents
-                console.log("API Response Data:", res.data); // Log actual response
+            
 
-                if (!Array.isArray(res.data) || res.data.length === 0) {
-                    console.warn("No valid sensor data received.");
-                    return;
-                }
+              return acc;
+            }, {});
+        
+            return Object.values(groupedData).map(({ count, ...item }) => ({
+              ...item,
+              CO: item.CO / count,
+              Benzene:  item.Benzene/count ,
+              Butane: item.Butane/count,
+              CO2:item.CO2/count ,
+              NH3:item.NH3/count ,
+              TVOC:  item.TVOC/count ,
+      
+            })).filter((item)=>item.place && item.place !== "")
+          };
+      
+          const averagedData = averageSensorDataByPlace(res.data);
+          setdata(averagedData);
+     
 
-                const processSensorData = (data) => {
-                    return data.map((item) => ({
-                        place: item.place?.trim() || "Unknown", // Handle missing place
-                        CO: item.CO || 0,
-                        Benzene: item.Benzene || 0,
-                        Butane: item.Butane || 0,
-                        CO2: item.CO2 || 0,
-                        NH3: item.NH3 || 0,
-                        TVOC: item.TVOC || 0,
-                    }));
-                };
 
-                const processedData = processSensorData(res.data);
-                console.log("Processed Data:", processedData);
-                setData(processedData);
-            })
-            .catch((err) => console.error("API Error:", err));
-    }, []);
 
-    return (
-        <div className="bg-slate-100 p-4">
-            <GasTable data={data} />
 
-            <div className="w-full flex justify-end">
-                <button
-                    onClick={() => setGraph(!graph)}
-                    className="bg-orange-300 text-white px-4 py-2 rounded m-2"
-                >
-                    {graph ? "Close Graph" : "Get Graph"}
-                </button>
-                <button
-                    onClick={() => setReport(!report)}
-                    className="bg-green-600 text-white px-4 py-2 rounded m-2"
-                >
-                    {report ? "Close Report" : "Get Report"}
-                </button>
-            </div>
 
-            {graph && <SensorChart data={data} />}
-            {report && <ReportDownload />}
-        </div>
-    );
-};
+    })
+    .catch((err=>console.log(err)))
+  },[])
+  
 
-export default Reports;
+
+
+
+  return (
+    <div className="   bg-slate-100">
+        
+        <GasTable data={data}/> 
+    
+    <div className="w-fill flex justify-end">
+
+      <button onClick={()=>{setgraph(!graph)}} className="bg-orange-300 text-white px-4 py-2 rounded m-2">
+      {graph ? "Close Graph":  "Get Graph"}
+      </button>
+      <button onClick={()=>{setReport(!Report)}} className="bg-green-600  text-white px-4 py-2 rounded m-2">
+      {Report ? "Close Report":  "Get Report"}
+      </button>
+    </div>
+       {graph ?  <SensorChart data={data}/> : null}
+       {Report ?   <ReportDownload/> :""}
+      {/* <GasBarChart data={data} selectedPlace={selectedPlace}/> */}
+    </div>
+  )
+}
+
+export default Reports
