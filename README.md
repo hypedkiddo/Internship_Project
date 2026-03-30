@@ -1,11 +1,12 @@
 # Drone Assisted Air Quality Monitoring System 
-This project was developed as part of my Bachelor's Thesis and supported during my internship experience. It focuses on real-time air quality monitoring using IoT sensors and data analysis techniques.
+This project was developed as part of my Bachelor's Thesis and supported during my internship experience. It focuses on real-time air quality monitoring using IoT sensors, embedded systems (ESP32 with Embedded C), and data analysis techniques. A React-based frontend is used to visualize insights derived from environmental data.
 
 ## Project Overview
 This project focuses on real-time air quality monitoring using IoT sensors integrated with a drone system. It collects environmental data and applies data analysis techniques to identify pollution patterns and trends.
 
 ## Tech Stack
-- 
+- Embedded C (ESP32 Programming)
+- React (Frontend)
 - ESP32 Microcontroller
 - MQ Series and MICS Sensors
 - Data Analysis & Visualization
