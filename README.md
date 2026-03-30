@@ -5,7 +5,7 @@ This project was developed as part of my Bachelor's Thesis and supported during 
 This project focuses on real-time air quality monitoring using IoT sensors integrated with a drone system. It collects environmental data and applies data analysis techniques to identify pollution patterns and trends.
 
 ## Tech Stack
-- Embedded C (ESP32 Programming)
+- Embedded C (ESP32 Programming) 
 - React (Frontend)
 - ESP32 Microcontroller
 - MQ Series and MICS Sensors
